@@ -20,10 +20,20 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
+
+    compile 'com.jakewharton:butterknife:7.0.1'      //注解
+
+    //高级的recyclerview  引入的时候，需要加入这个依赖，以及原生的recyclerview， 功能有上拉刷新，下拉加载；
+    compile 'com.jude:easyrecyclerview:4.3.7'
+    compile 'com.android.support:recyclerview-v7:24.2.0'
+
+    compile files('libs/android-async-http-1.4.3.jar')
+
+    compile 'com.squareup.picasso:picasso:2.5.2'    //图片显示
 }
