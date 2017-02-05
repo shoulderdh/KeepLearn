@@ -38,9 +38,12 @@ public class SplashActivity extends Activity {
             public void run() {
                 Intent intent=new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0,0);     //去掉跳转动画实现视觉无缝隙
                 finish();
             }
         },1500);
+
+
 
     }
 

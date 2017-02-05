@@ -6,6 +6,9 @@ package com.study.dh.keeplearn.network;
 
 public class UrlManager {
 
+    //来自干货集中营，图片API解释：  20 表示返回20条数据， 1，表示翻页
+    public  static  final  String  beautyurl="http://gank.io/api/data/福利/20/1";
+
 
     public  static  final String baseurl="http://news-at.zhihu.com/api";
 
@@ -22,8 +25,6 @@ public class UrlManager {
 
 
     /*软件版本查询   2.3.0代表所安装的版本
-
-
      */
     public static String getVersion(){
         return baseurl+"/4/version/android/2.3.0";

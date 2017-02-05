@@ -36,4 +36,14 @@ dependencies {
     compile files('libs/android-async-http-1.4.3.jar')
 
     compile 'com.squareup.picasso:picasso:2.5.2'    //图片显示
+
+    //网络
+    compile 'com.google.code.gson:gson:2.7'           //Gson是谷歌的Json处理包，添加依赖。
+    compile 'com.squareup.retrofit2:retrofit-converters:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-scalars:2.1.0'
+
 }
