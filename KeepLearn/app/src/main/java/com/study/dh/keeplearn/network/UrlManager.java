@@ -6,8 +6,8 @@ package com.study.dh.keeplearn.network;
 
 public class UrlManager {
 
-    //来自干货集中营，图片API解释：  20 表示返回20条数据， 1，表示翻页
-    public  static  final  String  beautyurl="http://gank.io/api/data/福利/20/1";
+    //来自干货集中营图片API解释：  20 表示返回20条数据， 1，表示翻页
+    public  static  final  String  beautyurl="http://gank.io/";
 
 
     public  static  final String baseurl="http://news-at.zhihu.com/api";

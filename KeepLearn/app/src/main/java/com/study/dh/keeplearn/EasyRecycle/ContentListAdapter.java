@@ -5,12 +5,13 @@ import android.view.ViewGroup;
 
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
+import com.study.dh.keeplearn.network.PicInfo;
 
 /**
  * Created by donghui on 2017/2/3.
  */
 
-public class ContentListAdapter  extends RecyclerArrayAdapter<Content> {
+public class ContentListAdapter  extends RecyclerArrayAdapter<PicInfo> {
 
     public ContentListAdapter(Context context) {
         super(context);

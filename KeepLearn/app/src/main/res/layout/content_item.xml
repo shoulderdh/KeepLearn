@@ -13,4 +13,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/content_time"
         />
+  <ImageView
+      android:scaleType="fitXY"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
+      android:id="@+id/content_pic"
+      />
 </LinearLayout>

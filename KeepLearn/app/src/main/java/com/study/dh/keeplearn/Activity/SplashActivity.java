@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.webkit.WebView;
 import android.widget.ImageView;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -24,6 +25,7 @@ import butterknife.ButterKnife;
 public class SplashActivity extends Activity {
     @Bind(R.id.startimg_iv)
     ImageView startimg_iv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
