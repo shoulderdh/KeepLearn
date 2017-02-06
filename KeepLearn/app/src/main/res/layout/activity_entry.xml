@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_entry"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.study.dh.keeplearn.EntryActivity">
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="图片浏览"
+       android:id="@+id/lookPic_btn"
+       />
+</LinearLayout>
