@@ -14,17 +14,28 @@ import static android.R.attr.path;
  */
 
 public interface ApiService {
-    @GET("social/")
-    Observable <String> getString(@Query("key") String key, @Query("num") String num, @Query("page") int page);
+    /*
+        方法一：
 
-//    @GET("social/")
-//    Observable <NewsGson> getNewsData(@Query("key") String key, @Query("num") String num, @Query("page") int page);
+        1.完整路径： http://op.juhe.cn/onebox/weather/query?cityname=深圳&key=您申请的KEY
+        2.retrofit基本路径：    .baseUrl("http://op.juhe.cn/")
+        3.接口中拼接写法：   关键字Query
+        @GET("onebox/weather/query?cityname=深圳")
+        Call<WeatherDataBean> getWeather(@Query("key") String key);
 
+        方法二：
+         @GET("onebox/weather/query?")
+         Call<WeatherDataBean> getWeather(@QueryMap Map<String, String> params);
 
-    //图片 路径获取
+         使用时：
+         Map<String, String> params = new HashMap<>();
+         params.put("cityname", "深圳");
+         params.put("key", "4ea58de8a7573377cec0046f5e2469d5");
+         api.getWeather(params).
+
+     */
+
+    //图片 路径获取   此处不需要key之类的名字，直接传参数 ，使用关键字 path    http://gank.io/api/data/Android/10/1
     @GET("api/data/福利/10/{page}")
     retrofit2.Call<PicInformationGson> getPictureData(@Path("page") int page);
-
-    @GET("/4/start-image/1080*1776")
-    retrofit2.Call<String> getSplashPic();
 }
