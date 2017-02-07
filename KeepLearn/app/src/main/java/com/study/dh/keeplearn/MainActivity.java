@@ -95,8 +95,9 @@ public class MainActivity extends AppCompatActivity {
                         "item: "+position+"  onclick, content is "+adapter.getAllData().get(position).getPicTitle(),
                         Toast.LENGTH_SHORT).show();
                 ArrayList<String>  data=new ArrayList<String>();
-                 data.add(adapter.getAllData().get(position).getCreTime());
+                data.add(adapter.getAllData().get(position).getCreTime());
                 data.add(adapter.getAllData().get(position).getPicTitle());
+                data.add(adapter.getAllData().get(position).getPicUrl());
 
                 Bundle  bundle=new Bundle();      //bundle  携带数据
                 bundle.putStringArrayList("data",data);

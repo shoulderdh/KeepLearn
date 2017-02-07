@@ -59,4 +59,6 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.0'       //greendao依赖
 
 
+    debugCompile 'com.amitshekhar.android:debug-db:0.2.0'   //Android Debug Database 是一个用于在Android应用中调试数据库和分享参数的强大的库。
+
 }
