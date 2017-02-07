@@ -30,6 +30,6 @@ import com.study.dh.keeplearn.network.PicInfo;
         super.setData(data);
      //   content_name.setText(data.getCreTime());
      //   content_time.setText(data.getPicTitle());
-        Picasso.with(getContext()).load(data.getPicUrl()).into(content_pic);
+        Picasso.with(getContext()).load(data.getPicUrl()).resize(100,100).centerCrop().into(content_pic);
     }
 }

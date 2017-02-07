@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+//使用greendao
+apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
@@ -17,6 +19,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'          //解决重复引入相同依赖包不同版本的问题
+    }
 }
 
 dependencies {
@@ -33,7 +39,6 @@ dependencies {
     compile 'com.jude:easyrecyclerview:4.3.7'
     compile 'com.android.support:recyclerview-v7:24.2.0'
 
-    compile files('libs/android-async-http-1.4.3.jar')
 
     compile 'com.squareup.picasso:picasso:2.5.2'    //图片显示
 
@@ -49,5 +54,9 @@ dependencies {
 
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-scalars:2.1.0'
+
+
+    compile 'org.greenrobot:greendao:3.2.0'       //greendao依赖
+
 
 }
