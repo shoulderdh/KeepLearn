@@ -1,6 +1,7 @@
 package com.study.dh.keeplearn.zhihuDaily;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,6 +37,8 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.view.View.Z;
+
 public class zhihuDailyActivity extends AppCompatActivity {
     @Bind(R.id.topBanner)
     ConvenientBanner  topBanner;
@@ -43,6 +46,8 @@ public class zhihuDailyActivity extends AppCompatActivity {
 
      @Bind(R.id.zhihulastinfo_er)
     EasyRecyclerView  zhihulastinfo_er;
+    List<PicInfo> titleinfoList = new ArrayList<PicInfo>();
+
 
     private TitleInfoAdapter  adapter;
     @Override
@@ -76,7 +81,19 @@ public class zhihuDailyActivity extends AppCompatActivity {
         topBanner.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(zhihuDailyActivity.this,"position:"+position,Toast.LENGTH_SHORT).show();
+                Intent  intent=new Intent(zhihuDailyActivity.this,zhihuDailyDetailActivity.class);
+                intent.putExtra("storyId",titleinfoList.get(position).getCreTime());
+                startActivity(intent);
+            }
+        });
+
+
+        adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent  intent=new Intent(zhihuDailyActivity.this,zhihuDailyDetailActivity.class);
+                intent.putExtra("storyId",titleinfoList.get(position).getCreTime());
+                startActivity(intent);
             }
         });
     }
@@ -92,13 +109,12 @@ public class zhihuDailyActivity extends AppCompatActivity {
         apiManager.getTitleInfo().enqueue(new Callback<TitleInfoGson>() {
             @Override
             public void onResponse(Call<TitleInfoGson> call, Response<TitleInfoGson> response) {
-                List<PicInfo> meiNvList = new ArrayList<PicInfo>();
                 for (TitleInfoGson.StoriesBean newslistBean : response.body().getStories()) {
                     PicInfo m1 = new PicInfo();
                     m1.setPicUrl(newslistBean.getImages().get(0));
-                    //m1.setCreTime(newslistBean.getId());
+                    m1.setCreTime(newslistBean.getId()+"");
                     m1.setPicTitle(newslistBean.getTitle());
-                    meiNvList.add(m1);
+                    titleinfoList.add(m1);
                 }
 
                 for (TitleInfoGson.TopStoriesBean newslistBean : response.body().getTop_stories()) {
@@ -113,7 +129,7 @@ public class zhihuDailyActivity extends AppCompatActivity {
                 },picInfos)
                         .setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused});
 
-                adapter.addAll(meiNvList);
+                adapter.addAll(titleinfoList);
             }
 
             @Override
