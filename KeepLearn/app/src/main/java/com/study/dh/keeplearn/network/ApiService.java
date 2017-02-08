@@ -1,6 +1,8 @@
 package com.study.dh.keeplearn.network;
 
 
+import com.study.dh.keeplearn.zhihuDaily.adapter.TitleInfoGson;
+
 import okhttp3.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -38,4 +40,11 @@ public interface ApiService {
     //图片 路径获取   此处不需要key之类的名字，直接传参数 ，使用关键字 path    http://gank.io/api/data/Android/10/1
     @GET("api/data/福利/10/{page}")
     retrofit2.Call<PicInformationGson> getPictureData(@Path("page") int page);
+
+    //   http://news-at.zhihu.com/api/4/news/latest
+    // http://news-at.zhihu.com/api
+    @GET("4/news/latest")
+    retrofit2.Call<TitleInfoGson> getTitleInfo();
+
+
 }

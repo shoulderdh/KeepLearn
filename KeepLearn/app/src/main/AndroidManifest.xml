@@ -26,7 +26,7 @@
         </activity>
         <activity android:name=".EntryActivity" />
         <activity android:name=".Activity.HandleDbActivity" />
-        <activity android:name=".Activity.zhihuDailyActivity"></activity>
+        <activity android:name=".zhihuDaily.zhihuDailyActivity"></activity>
     </application>
 
 </manifest>

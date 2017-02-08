@@ -10,24 +10,24 @@ public class UrlManager {
     public  static  final  String  beautyurl="http://gank.io/";
 
 
-    public  static  final String baseurl="http://news-at.zhihu.com/api";
+    public  static  final String zhihuDailybaseurl="http://news-at.zhihu.com/api/";
 
 
     //获取主题列表
     public static String getThemeUrl(){
-        return baseurl+"/4/themes";
+        return zhihuDailybaseurl+"/4/themes";
     }
 
     //获取启动页图片
     public static String getSplashUrl(){
-        return baseurl+"/4/start-image/1080*1776";
+        return zhihuDailybaseurl+"/4/start-image/1080*1776";
     }
 
 
     /*软件版本查询   2.3.0代表所安装的版本
      */
     public static String getVersion(){
-        return baseurl+"/4/version/android/2.3.0";
+        return zhihuDailybaseurl+"/4/version/android/2.3.0";
     }
 
     /*最新消息
@@ -69,7 +69,7 @@ multipic : 消息是否包含多张图片（仅出现在包含多图的新闻中
 top_stories : 界面顶部 ViewPager 滚动显示的显示内容（子项格式同上）（请注意区分此处的 image 属性与 stories 中的 images 属性）
      */
     public static String getLatestNews(){
-        return baseurl+"/4/news/latest";
+        return zhihuDailybaseurl+"/4/news/latest";
     }
 
 
@@ -78,7 +78,7 @@ top_stories : 界面顶部 ViewPager 滚动显示的显示内容（子项格式�
 
      */
     public static String getDetailInfo(){
-        return baseurl+"/4/news/";
+        return zhihuDailybaseurl+"/4/news/";
     }
 
     /*
@@ -86,7 +86,7 @@ top_stories : 界面顶部 ViewPager 滚动显示的显示内容（子项格式�
 
      */
     public static String getBeforeInfo(){
-        return baseurl+"/4/news/before";
+        return zhihuDailybaseurl+"/4/news/before";
     }
 
      /*
@@ -105,7 +105,7 @@ short_comments : 短评论总数
 comments : 评论总数
      */
      public static String getExtraInfo(){
-         return baseurl+"/4/story-extra/";
+         return zhihuDailybaseurl+"/4/story-extra/";
      }
 
 }

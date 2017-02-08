@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         adapter=new ContentListAdapter(this);
-
         easyRecyclerView.setAdapter(adapter);
 
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);

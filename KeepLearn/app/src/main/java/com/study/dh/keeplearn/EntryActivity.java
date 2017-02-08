@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.study.dh.keeplearn.Activity.HandleDbActivity;
-import com.study.dh.keeplearn.Activity.zhihuDailyActivity;
+import com.study.dh.keeplearn.zhihuDaily.zhihuDailyActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
