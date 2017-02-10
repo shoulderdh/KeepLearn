@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class PictureUtil {
     /**
-     * 图片下载
+     * 图片下载 工具
      */
     public static void saveImage(ImageView shot, Context context) {
         File externalStorageDirectory = Environment.getExternalStorageDirectory();

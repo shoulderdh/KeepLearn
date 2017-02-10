@@ -60,6 +60,8 @@ dependencies {
 
 
     debugCompile 'com.amitshekhar.android:debug-db:0.2.0'   //Android Debug Database 是一个用于在Android应用中调试数据库和分享参数的强大的库。
+    compile 'com.facebook.stetho:stetho:1.0.1'   //无需root即可查看手机data
+
 
     compile 'com.bigkoo:convenientbanner:2.0.5'     //轮播图
 }

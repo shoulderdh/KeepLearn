@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -17,8 +16,8 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.squareup.picasso.Picasso;
-import com.study.dh.keeplearn.MainActivity;
 import com.study.dh.keeplearn.R;
+import com.study.dh.keeplearn.db.ZhihuNews;
 import com.study.dh.keeplearn.network.ApiService;
 import com.study.dh.keeplearn.network.PicInfo;
 import com.study.dh.keeplearn.network.UrlManager;
@@ -36,8 +35,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import static android.view.View.Z;
 
 public class zhihuDailyActivity extends AppCompatActivity {
     @Bind(R.id.topBanner)
@@ -115,6 +112,10 @@ public class zhihuDailyActivity extends AppCompatActivity {
                     m1.setCreTime(newslistBean.getId()+"");
                     m1.setPicTitle(newslistBean.getTitle());
                     titleinfoList.add(m1);
+
+                    //
+                    addData(newslistBean);
+
                 }
 
                 for (TitleInfoGson.TopStoriesBean newslistBean : response.body().getTop_stories()) {
@@ -132,12 +133,19 @@ public class zhihuDailyActivity extends AppCompatActivity {
                 adapter.addAll(titleinfoList);
             }
 
+
+
             @Override
             public void onFailure(Call<TitleInfoGson> call, Throwable t) {
 
             }
 
         });
+
+    }
+
+    private void addData(TitleInfoGson.StoriesBean newslistBean) {
+        ZhihuNews zhihunew=new ZhihuNews();
 
     }
 

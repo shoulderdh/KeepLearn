@@ -26,7 +26,9 @@
         </activity>
         <activity android:name=".EntryActivity" />
         <activity android:name=".Activity.HandleDbActivity" />
-        <activity android:name=".zhihuDaily.zhihuDailyActivity" />
+        <activity android:name=".zhihuDaily.zhihuDailyActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            />
         <activity android:name=".zhihuDaily.zhihuDailyDetailActivity"></activity>
     </application>
 

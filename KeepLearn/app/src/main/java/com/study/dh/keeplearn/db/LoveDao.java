@@ -15,6 +15,7 @@ public class LoveDao {
      */
     public static void insertLove(Shop shop) {
         BaseApplication.getDaoInstant().getShopDao().insertOrReplace(shop);
+        //BaseApplication
     }
 
     /**
