@@ -2,6 +2,12 @@ apply plugin: 'com.android.application'
 
 //使用greendao
 apply plugin: 'org.greenrobot.greendao'
+
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
@@ -9,16 +15,61 @@ android {
         applicationId "com.study.dh.keeplearn"
         minSdkVersion 18
         targetSdkVersion 25
+
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled  true     //突破应用方法数  65535的一个限制
+        manifestPlaceholders=[UMENG_CHANNEL_VALUE:"umeng"]
+
+
     }
+    //添加签名文件配置
+    signingConfigs{
+        //为release包添加签名文件配置
+        release{
+            keyAlias 'keeplearn'
+            keyPassword '921018dh'
+            storeFile file('/Users/donghui/Documents/KeepLearnAndroid/KeepLearn/app/keeplearn.jks')
+            storePassword '921018dh'
+        }
+
+        debug{}
+    }
+
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.release
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 输出apk名称为appname_v1.0_2017-02-14_09-57-58_wandoujia.apk
+                        // 下面的appname改为你自己的app name
+                        def fileName = "keeplearn${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
+
         }
     }
+
+    productFlavors{
+        xiaomi{
+            manifestPlaceholders=[UMENG_CHANNEL_VALUE: "xiaomi"]
+        }
+        wandoujia{
+            manifestPlaceholders=[UMENG_CHANNEL_VALUE: "wandoujia"]
+        }
+    }
+
 
     packagingOptions {
         exclude 'META-INF/rxjava.properties'          //解决重复引入相同依赖包不同版本的问题
@@ -64,4 +115,14 @@ dependencies {
 
 
     compile 'com.bigkoo:convenientbanner:2.0.5'     //轮播图
+
+    compile 'com.umeng.analytics:analytics:latest.integration'   //友盟分析
+    /*
+      多渠道打包步骤
+      1. 添加对友盟库的依赖 ；
+      2.在manifest 文件声明appkey, 以及渠道占位符 ；
+      3.在gradle 中动态替换掉占位符value 即可；
+      4.在控制台使用 ./gradlew  assembleRelease  自动打出所有渠道的包
+     */
+
 }
