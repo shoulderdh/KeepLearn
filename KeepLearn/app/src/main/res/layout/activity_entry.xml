@@ -26,4 +26,16 @@
        android:textAllCaps="false"
        android:id="@+id/zhihuDaily_btn"
        />
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="知乎日报简版"
+       android:textAllCaps="false"
+       android:id="@+id/eventBus_btn"
+       />
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/eventBus_tv"
+       />
 </LinearLayout>

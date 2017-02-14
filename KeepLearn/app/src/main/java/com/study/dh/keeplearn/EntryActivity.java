@@ -3,11 +3,21 @@ package com.study.dh.keeplearn;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.study.dh.keeplearn.Activity.HandleDbActivity;
+import com.study.dh.keeplearn.eventBus.AsyncEvent;
+import com.study.dh.keeplearn.eventBus.BackgroundEvent;
+import com.study.dh.keeplearn.eventBus.MainEvent;
+import com.study.dh.keeplearn.eventBus.PostingEvent;
 import com.study.dh.keeplearn.zhihuDaily.zhihuDailyActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,17 +29,83 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
     Button  handleDB_btn;
     @Bind(R.id.zhihuDaily_btn)
     Button zhihuDaily_btn;
+    @Bind(R.id.eventBus_btn)
+    Button  eventBus_btn;
+
+    @Bind(R.id.eventBus_tv)
+    TextView  eventBus_tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry);
         ButterKnife.bind(this);
 
+        EventBus.getDefault().register(this);   //eventBus  注册
+
+
         lookPic_btn.setOnClickListener(this);
         handleDB_btn.setOnClickListener(this);
         zhihuDaily_btn.setOnClickListener(this);
 
     }
+
+    /**
+     * 事件响应方法
+     * 接收消息
+     * @param event
+     */
+
+    /*
+    ThreadMode.MAIN
+    表示无论事件是在哪个线程发布出来的，该事件订阅方法onEvent都会在UI线程中执行，这个在Android中是非常有用的，
+    因为在Android中只能在UI线程中更新UI，所有在此模式下的方法是不能执行耗时操作的。
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN,priority = 100)     //priority越大  优先级越高  越先接收事件
+    public  void  onMainEvent(MainEvent event){
+         String msg=event.getMessage();
+         eventBus_tv.setText(msg);
+        Log.i("MainEvent",event.getMessage());
+    }
+
+
+    /*
+    ThreadMode.AYSNC：使用这个模式的订阅函数，那么无论事件在哪个线程发布，都会创建新的子线程来执行订阅函数。
+     */
+    @Subscribe(threadMode = ThreadMode.ASYNC)
+    public  void  onAsyncEvent(AsyncEvent event){
+        Log.i("onAsyncEvent",event.getMessage());
+
+    }
+
+
+    /*
+    ThreadMode.BACKGROUND：表示如果事件在UI线程中发布出来的，那么订阅函数onEvent就会在子线程中运行，
+    如果事件本来就是在子线程中发布出来的，那么订阅函数直接在该子线程中执行。
+     */
+    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    public void  onBackgroundEvent(BackgroundEvent event){
+        Log.i("onBackgroundEvent",event.getMessage());
+
+    }
+
+
+
+    /*
+    ThreadMode.POSTING：表示事件在哪个线程中发布出来的，事件订阅函数onEvent就会在这个线程中运行，也就是说发布事件和接收事件在同一个线程。
+    使用这个方法时，在onEvent方法中不能执行耗时操作，如果执行耗时操作容易导致事件分发延迟。
+     */
+    @Subscribe(threadMode = ThreadMode.POSTING)
+     public  void  onPostingEvent(PostingEvent event){
+        Log.i("onPostingEvent",event.getMessage());
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -43,6 +119,9 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
               case R.id.zhihuDaily_btn:
                   startActivity(new Intent(EntryActivity.this,zhihuDailyActivity.class));
                   break;
+              case R.id.eventBus_btn:
+                  startActivity(new Intent(EntryActivity.this,HandleDbActivity.class));
+                  break;
           }
     }
 
@@ -54,4 +133,7 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
         intent.addCategory(Intent.CATEGORY_HOME);
         startActivity(intent);
     }
+
+
+
 }

@@ -10,12 +10,15 @@ import com.study.dh.keeplearn.R;
 import com.study.dh.keeplearn.db.LoveDao;
 import com.study.dh.keeplearn.db.Shop;
 import com.study.dh.keeplearn.db.ShopListAdapter;
+import com.study.dh.keeplearn.eventBus.MainEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HandleDbActivity extends AppCompatActivity  implements View.OnClickListener{
-    private Button bt_add, bt_delete, bt_update, bt_query;
+    private Button bt_add, bt_delete, bt_update, bt_query,eventBusAnother_btn,AsyncEventAnother_btn,PostingEventAnother_btn,BackgroundEventAnother_btn;
     private ListView lv_content;
     private ShopListAdapter adapter;
     private List<Shop> shops;
@@ -35,6 +38,15 @@ public class HandleDbActivity extends AppCompatActivity  implements View.OnClick
         bt_update.setOnClickListener(this);
         bt_query.setOnClickListener(this);
 
+        eventBusAnother_btn= (Button) findViewById(R.id.MainEventAnother_btn);
+        AsyncEventAnother_btn= (Button) findViewById(R.id.AsyncEventAnother_btn);
+        PostingEventAnother_btn= (Button) findViewById(R.id.PostingEventAnother_btn);
+        BackgroundEventAnother_btn= (Button) findViewById(R.id.BackgroundEventAnother_btn);
+        eventBusAnother_btn.setOnClickListener(this);
+        AsyncEventAnother_btn.setOnClickListener(this);
+        PostingEventAnother_btn.setOnClickListener(this);
+        BackgroundEventAnother_btn.setOnClickListener(this);
+
     }
 
     @Override
@@ -51,6 +63,25 @@ public class HandleDbActivity extends AppCompatActivity  implements View.OnClick
                 break;
             case R.id.bt_query:
                 queryDate();
+                break;
+            case R.id.MainEventAnother_btn:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        EventBus.getDefault().post(new MainEvent("just  do  it main!!"));
+                    }
+                }).start();
+                break;
+            case R.id.AsyncEventAnother_btn:
+                EventBus.getDefault().post(new MainEvent("just  do  it async!!"));
+                break;
+            case R.id.PostingEventAnother_btn:
+                EventBus.getDefault().post(new MainEvent("just  do  it posting!!"));
+
+                break;
+            case R.id.BackgroundEventAnother_btn:
+                EventBus.getDefault().post(new MainEvent("just  do  it background!!"));
+
                 break;
         }
     }
