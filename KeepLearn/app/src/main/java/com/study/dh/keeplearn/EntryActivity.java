@@ -1,18 +1,23 @@
 package com.study.dh.keeplearn;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.amitshekhar.utils.Constants;
 import com.study.dh.keeplearn.Activity.HandleDbActivity;
-import com.study.dh.keeplearn.eventBus.AsyncEvent;
-import com.study.dh.keeplearn.eventBus.BackgroundEvent;
 import com.study.dh.keeplearn.eventBus.MainEvent;
-import com.study.dh.keeplearn.eventBus.PostingEvent;
 import com.study.dh.keeplearn.zhihuDaily.zhihuDailyActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -47,6 +52,38 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
         handleDB_btn.setOnClickListener(this);
         zhihuDaily_btn.setOnClickListener(this);
 
+        callPhone();
+
+    }
+
+    private void callPhone() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CALL_PHONE},1);
+        }else {
+            doCallPhone();
+        }
+
+
+    }
+
+    private void doCallPhone() {
+        Intent  intent=new Intent(Intent.ACTION_CALL);
+        Uri data=Uri.parse("tel:"+"10010");
+        intent.setData(data);
+        startActivity(intent);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 1:
+                if (grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                    doCallPhone();
+                }else {
+                    //提示用户权限未被授予
+
+                }
+                break;
+        }
     }
 
     /**
@@ -72,7 +109,7 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
     ThreadMode.AYSNC：使用这个模式的订阅函数，那么无论事件在哪个线程发布，都会创建新的子线程来执行订阅函数。
      */
     @Subscribe(threadMode = ThreadMode.ASYNC)
-    public  void  onAsyncEvent(AsyncEvent event){
+    public  void  onAsyncEvent(MainEvent event){
         Log.i("onAsyncEvent",event.getMessage());
 
     }
@@ -83,7 +120,7 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
     如果事件本来就是在子线程中发布出来的，那么订阅函数直接在该子线程中执行。
      */
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
-    public void  onBackgroundEvent(BackgroundEvent event){
+    public void  onBackgroundEvent(MainEvent event){
         Log.i("onBackgroundEvent",event.getMessage());
 
     }
@@ -95,7 +132,7 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
     使用这个方法时，在onEvent方法中不能执行耗时操作，如果执行耗时操作容易导致事件分发延迟。
      */
     @Subscribe(threadMode = ThreadMode.POSTING)
-     public  void  onPostingEvent(PostingEvent event){
+     public  void  onPostingEvent(MainEvent event){
         Log.i("onPostingEvent",event.getMessage());
 
     }
@@ -133,7 +170,6 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
         intent.addCategory(Intent.CATEGORY_HOME);
         startActivity(intent);
     }
-
 
 
 }

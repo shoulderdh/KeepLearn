@@ -17,8 +17,30 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+
+
 public class HandleDbActivity extends AppCompatActivity  implements View.OnClickListener{
-    private Button bt_add, bt_delete, bt_update, bt_query,eventBusAnother_btn,AsyncEventAnother_btn,PostingEventAnother_btn,BackgroundEventAnother_btn;
+    @Bind(R.id.bt_add)
+    Button  bt_add;
+    @Bind(R.id.bt_delete)
+    Button  bt_delete;
+    @Bind(R.id.bt_update)
+    Button  bt_update;
+    @Bind(R.id.bt_query)
+    Button  bt_query;
+
+    @Bind(R.id.MainEventAnother_btn)
+    Button  eventBusAnother_btn;
+    @Bind(R.id.AsyncEventAnother_btn)
+    Button  AsyncEventAnother_btn;
+    @Bind(R.id.PostingEventAnother_btn)
+    Button  PostingEventAnother_btn;
+    @Bind(R.id.BackgroundEventAnother_btn)
+    Button  BackgroundEventAnother_btn;
+
     private ListView lv_content;
     private ShopListAdapter adapter;
     private List<Shop> shops;
@@ -27,21 +49,14 @@ public class HandleDbActivity extends AppCompatActivity  implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handle_db);
+        ButterKnife.bind(this);
 
-        bt_add = (Button) findViewById(R.id.bt_add);
-        bt_delete = (Button) findViewById(R.id.bt_delete);
-        bt_update = (Button) findViewById(R.id.bt_update);
-        bt_query = (Button) findViewById(R.id.bt_query);
         lv_content = (ListView) findViewById(R.id.lv_content);
         bt_add.setOnClickListener(this);
         bt_delete.setOnClickListener(this);
         bt_update.setOnClickListener(this);
         bt_query.setOnClickListener(this);
 
-        eventBusAnother_btn= (Button) findViewById(R.id.MainEventAnother_btn);
-        AsyncEventAnother_btn= (Button) findViewById(R.id.AsyncEventAnother_btn);
-        PostingEventAnother_btn= (Button) findViewById(R.id.PostingEventAnother_btn);
-        BackgroundEventAnother_btn= (Button) findViewById(R.id.BackgroundEventAnother_btn);
         eventBusAnother_btn.setOnClickListener(this);
         AsyncEventAnother_btn.setOnClickListener(this);
         PostingEventAnother_btn.setOnClickListener(this);
@@ -65,23 +80,16 @@ public class HandleDbActivity extends AppCompatActivity  implements View.OnClick
                 queryDate();
                 break;
             case R.id.MainEventAnother_btn:
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        EventBus.getDefault().post(new MainEvent("just  do  it main!!"));
-                    }
-                }).start();
+                EventBus.getDefault().post(new MainEvent("just  do  it main!!"));
                 break;
             case R.id.AsyncEventAnother_btn:
                 EventBus.getDefault().post(new MainEvent("just  do  it async!!"));
                 break;
             case R.id.PostingEventAnother_btn:
                 EventBus.getDefault().post(new MainEvent("just  do  it posting!!"));
-
                 break;
             case R.id.BackgroundEventAnother_btn:
                 EventBus.getDefault().post(new MainEvent("just  do  it background!!"));
-
                 break;
         }
     }

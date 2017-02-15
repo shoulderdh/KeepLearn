@@ -44,19 +44,19 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            signingConfig signingConfigs.release
+        //    signingConfig signingConfigs.release               //多渠道打包签名使用
 
-            applicationVariants.all { variant ->
-                variant.outputs.each { output ->
-                    def outputFile = output.outputFile
-                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        // 输出apk名称为appname_v1.0_2017-02-14_09-57-58_wandoujia.apk
-                        // 下面的appname改为你自己的app name
-                        def fileName = "keeplearn${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
-                        output.outputFile = new File(outputFile.parent, fileName)
-                    }
-                }
-            }
+//            applicationVariants.all { variant ->
+//                variant.outputs.each { output ->
+//                    def outputFile = output.outputFile
+//                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                        // 输出apk名称为appname_v1.0_2017-02-14_09-57-58_wandoujia.apk
+//                        // 下面的appname改为你自己的app name
+//                        def fileName = "keeplearn${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+//                        output.outputFile = new File(outputFile.parent, fileName)
+//                    }
+//                }
+//            }
 
         }
     }

@@ -29,7 +29,7 @@
    <Button
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="知乎日报简版"
+       android:text="eventBus"
        android:textAllCaps="false"
        android:id="@+id/eventBus_btn"
        />
