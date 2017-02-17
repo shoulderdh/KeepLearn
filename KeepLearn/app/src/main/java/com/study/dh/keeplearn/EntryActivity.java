@@ -13,11 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.amitshekhar.utils.Constants;
 import com.study.dh.keeplearn.Activity.HandleDbActivity;
 import com.study.dh.keeplearn.eventBus.MainEvent;
+import com.study.dh.keeplearn.playvideo.PlayVideoActivity;
 import com.study.dh.keeplearn.zhihuDaily.zhihuDailyActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -36,9 +38,11 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
     Button zhihuDaily_btn;
     @Bind(R.id.eventBus_btn)
     Button  eventBus_btn;
+    @Bind(R.id.video_btn)
+    Button  video_btn;
 
     @Bind(R.id.eventBus_tv)
-    TextView  eventBus_tv;
+    EditText eventBus_tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +55,9 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
         lookPic_btn.setOnClickListener(this);
         handleDB_btn.setOnClickListener(this);
         zhihuDaily_btn.setOnClickListener(this);
+        video_btn.setOnClickListener(this);
 
-        callPhone();
+   //     callPhone();
 
     }
 
@@ -158,6 +163,10 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
                   break;
               case R.id.eventBus_btn:
                   startActivity(new Intent(EntryActivity.this,HandleDbActivity.class));
+                  break;
+              case R.id.video_btn:
+                  startActivity(new Intent(EntryActivity.this,PlayVideoActivity.class));
+
                   break;
           }
     }

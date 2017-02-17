@@ -1,6 +1,8 @@
 package com.study.dh.keeplearn.network;
 
 
+import com.study.dh.keeplearn.entry.DownloadFile;
+import com.study.dh.keeplearn.entry.UploadFile;
 import com.study.dh.keeplearn.zhihuDaily.adapter.TitleInfoGson;
 
 import okhttp3.Call;
@@ -46,5 +48,10 @@ public interface ApiService {
     @GET("4/news/latest")
     retrofit2.Call<TitleInfoGson> getTitleInfo();
 
+    @GET("downloadFile")
+    retrofit2.Call<DownloadFile> getDownloadFile();
+
+    @GET("uploadFile")
+    retrofit2.Call<UploadFile> getUploadFile();
 
 }

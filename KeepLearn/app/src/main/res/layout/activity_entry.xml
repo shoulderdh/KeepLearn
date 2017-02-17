@@ -29,13 +29,21 @@
    <Button
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="eventBus"
+       android:text="视频播放"
        android:textAllCaps="false"
-       android:id="@+id/eventBus_btn"
+       android:id="@+id/video_btn"
        />
-   <TextView
+   <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="eventBus"
+    android:textAllCaps="false"
+    android:id="@+id/eventBus_btn"
+    />
+   <EditText
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:id="@+id/eventBus_tv"
+       android:text="192.168.99.146:8080/myvoice/香格里拉.mp3"
        />
 </LinearLayout>
