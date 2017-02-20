@@ -24,6 +24,14 @@ android {
         manifestPlaceholders=[UMENG_CHANNEL_VALUE:"umeng"]
 
 
+        manifestPlaceholders=[
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY:  "529bf5faf36e0bdbc095bbed",
+                JPUSH_CHANNEL: "developer-default",
+
+        ]
+
+
     }
     //添加签名文件配置
     signingConfigs{
@@ -128,6 +136,10 @@ dependencies {
 
 
     compile 'org.greenrobot:eventbus:3.0.0'    //引入eventBus
+
+
+    compile 'cn.jiguang.sdk:jpush:3.0.0' // 极光推送
+     compile 'cn.jiguang.sdk:jcore:1.0.0'
 
 
 }
