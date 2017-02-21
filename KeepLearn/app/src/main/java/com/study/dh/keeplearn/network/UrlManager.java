@@ -12,7 +12,7 @@ public class UrlManager {
 
     public  static  final String zhihuDailybaseurl="http://news-at.zhihu.com/api/";
 
-    public  static  final String localhostdownloadFile="http://localhost:8080/mytxt/";
+    public  static  final String localhostdownloadFile="http://192.168.99.153:8080/mytxt/";
 
 
     //获取主题列表

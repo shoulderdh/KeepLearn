@@ -26,23 +26,31 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.IOException;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
-public class EntryActivity extends AppCompatActivity implements View.OnClickListener{
-     @Bind(R.id.lookPic_btn)
-    Button  lookPic_btn;
+public class EntryActivity extends AppCompatActivity implements View.OnClickListener {
+    @Bind(R.id.lookPic_btn)
+    Button lookPic_btn;
     @Bind(R.id.handleDB_btn)
-    Button  handleDB_btn;
+    Button handleDB_btn;
     @Bind(R.id.zhihuDaily_btn)
     Button zhihuDaily_btn;
     @Bind(R.id.eventBus_btn)
-    Button  eventBus_btn;
+    Button eventBus_btn;
     @Bind(R.id.video_btn)
-    Button  video_btn;
+    Button video_btn;
 
     @Bind(R.id.eventBus_tv)
     EditText eventBus_tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,14 +65,42 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
         zhihuDaily_btn.setOnClickListener(this);
         video_btn.setOnClickListener(this);
 
-   //     callPhone();
+        //     callPhone();
+
+
+                testOkhttp();
+
+    }
+
+    private void testOkhttp() {
+        String url2 = "http://192.168.99.153:8080/mytxt/downloadFile";
+        OkHttpClient okHttpClient = new OkHttpClient();
+       okHttpClient.retryOnConnectionFailure();
+
+        Request request = new Request.Builder()
+                .url(url2)
+                .addHeader("Connection","close")
+                .build();
+            okHttpClient.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    Log.i("json",e.toString());
+
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String json = response.body().string();
+                    Log.i("json", json);
+                }
+            });
 
     }
 
     private void callPhone() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CALL_PHONE},1);
-        }else {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+        } else {
             doCallPhone();
         }
 
@@ -72,9 +108,19 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void doCallPhone() {
-        Intent  intent=new Intent(Intent.ACTION_CALL);
-        Uri data=Uri.parse("tel:"+"10010");
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + "10010");
         intent.setData(data);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         startActivity(intent);
     }
     @Override

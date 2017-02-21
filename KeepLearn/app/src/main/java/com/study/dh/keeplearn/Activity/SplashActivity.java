@@ -17,6 +17,7 @@ import com.study.dh.keeplearn.entry.UploadFile;
 import com.study.dh.keeplearn.network.ApiService;
 import com.study.dh.keeplearn.network.UrlManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -39,8 +40,8 @@ public class SplashActivity extends Activity {
             "http://ww2.sinaimg.cn/large/610dc034jw1fb3whph0ilj20u00na405.jpg","http://ww2.sinaimg.cn/large/610dc034jw1fawx09uje2j20u00mh43f.jpg",
             "http://ww3.sinaimg.cn/large/610dc034jw1fasakfvqe1j20u00mhgn2.jpg","http://ww4.sinaimg.cn/large/610dc034gw1fac4t2zhwsj20sg0izahf.jpg"};
 
-    private List<String>  downloadStrings;
-    private List<String>  uploadStrings;
+    private List<String>  downloadStrings=new ArrayList<>();
+    private List<String>  uploadStrings=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +50,16 @@ public class SplashActivity extends Activity {
         ButterKnife.bind(this);
 
 
-        Handler handler=new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent=new Intent(SplashActivity.this, EntryActivity.class);
-                startActivity(intent);
-                overridePendingTransition(0,0);     //去掉跳转动画实现视觉无缝隙
-                finish();
-            }
-        },3000);
+//        Handler handler=new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Intent intent=new Intent(SplashActivity.this, EntryActivity.class);
+//                startActivity(intent);
+//                overridePendingTransition(0,0);     //去掉跳转动画实现视觉无缝隙
+//                finish();
+//            }
+//        },3000);
 
          Random  random=new Random();
          int i=random.nextInt(5);
@@ -76,7 +77,6 @@ public class SplashActivity extends Activity {
                  Log.i("compare",compareFile.CompareFile(uploadStrings,downloadStrings).toString());
              }
          });
-          Log.v("compare","compare");
     }
 
     private void getData() {
@@ -94,7 +94,6 @@ public class SplashActivity extends Activity {
                         downloadStrings.add(digitCodesBean.getMealerCode());
                     }
                 Log.i("compare",downloadStrings.toString());
-
             }
 
             @Override

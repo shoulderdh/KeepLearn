@@ -139,7 +139,10 @@ dependencies {
 
 
     compile 'cn.jiguang.sdk:jpush:3.0.0' // 极光推送
-     compile 'cn.jiguang.sdk:jcore:1.0.0'
+    compile 'cn.jiguang.sdk:jcore:1.0.0'
+
+
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'     //okhttp 3
 
 
 }
