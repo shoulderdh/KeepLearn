@@ -75,11 +75,9 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
     private void testOkhttp() {
         String url2 = "http://192.168.99.153:8080/mytxt/downloadFile";
         OkHttpClient okHttpClient = new OkHttpClient();
-       okHttpClient.retryOnConnectionFailure();
 
         Request request = new Request.Builder()
                 .url(url2)
-                .addHeader("Connection","close")
                 .build();
             okHttpClient.newCall(request).enqueue(new Callback() {
                 @Override
@@ -91,7 +89,8 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     String json = response.body().string();
-                    Log.i("json", json);
+                    Log.i("json", json+"//" + call.toString()
+                    );
                 }
             });
 

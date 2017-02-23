@@ -12,10 +12,9 @@ public class CompareFile {
             if (strings.size()>0&&strings2.size()>0){
                   for (int i=0;i<strings2.size();i++){
                        for (int j=0;j<strings.size();j++){
-                           if (strings.get(j)==strings2.get(i)){
+                           if (strings.get(j).equals(strings2.get(i))){
                                strings.remove(j);
                            }
-
                        }
                   }
             }

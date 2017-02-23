@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -50,16 +50,16 @@ public class SplashActivity extends Activity {
         ButterKnife.bind(this);
 
 
-//        Handler handler=new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                Intent intent=new Intent(SplashActivity.this, EntryActivity.class);
-//                startActivity(intent);
-//                overridePendingTransition(0,0);     //去掉跳转动画实现视觉无缝隙
-//                finish();
-//            }
-//        },3000);
+        Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent=new Intent(SplashActivity.this, EntryActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0,0);     //去掉跳转动画实现视觉无缝隙
+                finish();
+            }
+        },3000);
 
          Random  random=new Random();
          int i=random.nextInt(5);
@@ -68,18 +68,11 @@ public class SplashActivity extends Activity {
                 .into(startimg_iv);
 
 
-         getData();
-         startimg_iv.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
+         getDownloadData();
 
-                 CompareFile compareFile =new CompareFile();
-                 Log.i("compare",compareFile.CompareFile(uploadStrings,downloadStrings).toString());
-             }
-         });
     }
 
-    private void getData() {
+    private void getDownloadData() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(UrlManager.localhostdownloadFile)
                 .addConverterFactory(GsonConverterFactory.create())//添加 json 转换器
@@ -93,17 +86,20 @@ public class SplashActivity extends Activity {
                     for (DownloadFile.DigitCodesBean digitCodesBean  : response.body().getDigitCodes()){
                         downloadStrings.add(digitCodesBean.getMealerCode());
                     }
-                Log.i("compare",downloadStrings.toString());
+                getUploadData();
+
             }
 
             @Override
             public void onFailure(Call<DownloadFile> call, Throwable t) {
-                Log.i("compare",t.toString());
 
             }
 
         });
 
+    }
+
+    private void getUploadData() {
 
         Retrofit retrofit1 = new Retrofit.Builder()
                 .baseUrl(UrlManager.localhostdownloadFile)
@@ -117,19 +113,19 @@ public class SplashActivity extends Activity {
                 for (UploadFile.MealersBean mealersBean  : response.body().getMealers()){
                     uploadStrings.add(mealersBean.getMealerCode());
                 }
-                Log.i("compare",uploadStrings.toString());
+
+                CompareFile compareFile =new CompareFile();
+                Log.i("compare",compareFile.CompareFile(uploadStrings,downloadStrings).toString());
 
             }
 
             @Override
             public void onFailure(Call<UploadFile> call, Throwable t) {
-                Log.i("compare",t.toString());
 
             }
 
         });
-
-
     }
+
 
 }
