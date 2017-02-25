@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -14,11 +13,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.amitshekhar.utils.Constants;
 import com.study.dh.keeplearn.Activity.HandleDbActivity;
 import com.study.dh.keeplearn.eventBus.MainEvent;
+import com.study.dh.keeplearn.network.UrlManager;
 import com.study.dh.keeplearn.playvideo.PlayVideoActivity;
 import com.study.dh.keeplearn.zhihuDaily.zhihuDailyActivity;
 
@@ -26,14 +24,17 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.File;
 import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class EntryActivity extends AppCompatActivity implements View.OnClickListener {
@@ -71,13 +72,17 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
                 testOkhttp();
 
     }
+    public static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("java/x-markdown; charset=utf-8");
 
-    private void testOkhttp() {
-        String url2 = "http://192.168.99.153:8080/mytxt/downloadFile";
+    private void testOkhttp()  throws   Exception{
         OkHttpClient okHttpClient = new OkHttpClient();
 
+        File  file=new File("/sdcard/myview.java");
+
+
         Request request = new Request.Builder()
-                .url(url2)
+                .url(UrlManager.localhostdownloadFile)
+                .post(RequestBody.create(MediaType.parse("application/octet-stream")),file)
                 .build();
             okHttpClient.newCall(request).enqueue(new Callback() {
                 @Override

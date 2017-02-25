@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -49,7 +48,6 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
 
-
         Handler handler=new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -59,7 +57,7 @@ public class SplashActivity extends Activity {
                 overridePendingTransition(0,0);     //去掉跳转动画实现视觉无缝隙
                 finish();
             }
-        },3000);
+        },1500);
 
          Random  random=new Random();
          int i=random.nextInt(5);
@@ -97,6 +95,12 @@ public class SplashActivity extends Activity {
 
         });
 
+
+//        apiManager.getDownloadFile()
+//                .subscribeOn(Schedulers.newThread())
+//                .
+
+
     }
 
     private void getUploadData() {
@@ -116,6 +120,7 @@ public class SplashActivity extends Activity {
 
                 CompareFile compareFile =new CompareFile();
                 Log.i("compare",compareFile.CompareFile(uploadStrings,downloadStrings).toString());
+
 
             }
 
