@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -14,6 +15,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.aliyun.logsdk.LOGClient;
+import com.aliyun.logsdk.LogException;
+import com.aliyun.logsdk.LogGroup;
 import com.study.dh.keeplearn.Activity.HandleDbActivity;
 import com.study.dh.keeplearn.eventBus.MainEvent;
 import com.study.dh.keeplearn.network.UrlManager;
@@ -34,7 +38,6 @@ import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class EntryActivity extends AppCompatActivity implements View.OnClickListener {
@@ -69,7 +72,7 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
         //     callPhone();
 
 
-                testOkhttp();
+           //     testOkhttp();
 
     }
     public static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("java/x-markdown; charset=utf-8");
@@ -82,7 +85,7 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
 
         Request request = new Request.Builder()
                 .url(UrlManager.localhostdownloadFile)
-                .post(RequestBody.create(MediaType.parse("application/octet-stream")),file)
+          //      .post(RequestBody.create(MediaType.parse("application/octet-stream")),file)
                 .build();
             okHttpClient.newCall(request).enqueue(new Callback() {
                 @Override
@@ -230,5 +233,48 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
         startActivity(intent);
     }
 
+
+    // just  a  test  ,write  log to  aliyun !!
+
+    public static  final   String    accessID="LTAIMF9FDEGqvm7m";
+    public static  final   String    accessKey="XH6pqLjGSfgBIYg7ke9mbtItk5VZrm";
+    public static  final   String    endPoint="cn-hangzhou.log.aliyuncs.com";
+    public static  final   String    projectName="aliyunlog";
+    private void writeAliyunLog() {
+        int m=10;
+        /**
+         * 日志写入测试
+         * endPoint: 访问点（不需要加http前缀，例如cn-hangzhou.log.aliyuncs.com）
+         * accessKeyID/accessKeySecret 为阿里云账号/或子账号AK
+         */
+/**
+ 通过EndPoint、accessKeyID、accessKeySecret 构建日志服务客户端
+ @endPoint: 服务访问入口，参见 https://help.aliyun.com/document_detail/29008.html
+ */
+        final LOGClient myClient = new LOGClient(endPoint,accessID,accessKey,projectName);
+
+/* 创建logGroup */
+        final LogGroup logGroup = new LogGroup("why", "what" );
+        for (int i = 0 ; i <m; i++) {
+    /* 存入10条log */
+            com.aliyun.logsdk.Log  log=new com.aliyun.logsdk.Log();
+            log.PutContent("level", "error");
+            log.PutContent("message", "sth" + String.valueOf(i) );
+            logGroup.PutLog(log);
+        }
+/* 发送log ,在后台发送数据，以防止阻塞主线程*/
+        Thread t=new Thread(){public void run(){
+            try {
+                myClient.PostLog(logGroup,"log_demo");
+                android.util.Log.i("xicun","send ok");
+
+                Looper.prepare();
+            //    Toast.makeText(MainActivity.this,"send success",Toast.LENGTH_SHORT).show();
+                Looper.loop();     // 进入loop中的循环，查看消息队列   保证toast不会报错
+            } catch (LogException e) {
+                e.printStackTrace();
+            }
+        }};t.start();
+    }
 
 }

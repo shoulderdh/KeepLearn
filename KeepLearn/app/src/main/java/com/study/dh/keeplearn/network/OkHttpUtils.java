@@ -48,15 +48,15 @@ public class OkHttpUtils {
                });
     }
      public  class   BaseCallback{
-               public abstract  void onBeforeRequest(Request  request);
-         public abstract  void onFailure(Request request, Exception e) ;
+            //   public abstract  void onBeforeRequest(Request  request);
+        // public abstract  void onFailure(Request request, Exception e) ;
 
 
          /**
           *请求成功时调用此方法
           * @param response
           */
-         public abstract  void onResponse(Response response);
+   //      public abstract  void onResponse(Response response);
      }
 
     public  void get(String url,BaseCallback  baseCallback){
@@ -66,7 +66,7 @@ public class OkHttpUtils {
     }
     public  void  post(String url , Map< String,Object >  param){
              Request  request=buildRequest(url,HttpMethodType.POST,param);
-             doRequest(request,callback);
+       //      doRequest(request,callback);
 
 
 

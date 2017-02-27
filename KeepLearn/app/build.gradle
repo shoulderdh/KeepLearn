@@ -91,58 +91,48 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
-
-    compile 'com.jakewharton:butterknife:7.0.1'      //注解
-
+    compile 'com.jakewharton:butterknife:7.0.1'
+    //注解
     //高级的recyclerview  引入的时候，需要加入这个依赖，以及原生的recyclerview， 功能有上拉刷新，下拉加载；
     compile 'com.jude:easyrecyclerview:4.3.7'
     compile 'com.android.support:recyclerview-v7:24.2.0'
-
-
-    compile 'com.squareup.picasso:picasso:2.5.2'    //图片显示
-
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    //图片显示
     //网络
-    compile 'com.google.code.gson:gson:2.7'           //Gson是谷歌的Json处理包，添加依赖。
-
+    compile 'com.google.code.gson:gson:2.7'
+    //Gson是谷歌的Json处理包，添加依赖。
     compile 'com.squareup.retrofit2:retrofit-converters:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-
-  //  compile 'io.reactivex.rxjava2:rxandroid:2.0.2'
-  //  compile 'io.reactivex.rxjava2:rxjava:2.0.2'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'      //适配器
-
+    //  compile 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    //  compile 'io.reactivex.rxjava2:rxjava:2.0.2'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    //适配器
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-scalars:2.1.0'
-
-
-    compile 'org.greenrobot:greendao:3.2.0'       //greendao依赖
-
-
-    debugCompile 'com.amitshekhar.android:debug-db:0.2.0'   //Android Debug Database 是一个用于在Android应用中调试数据库和分享参数的强大的库。
-    compile 'com.facebook.stetho:stetho:1.0.1'   //无需root即可查看手机data
-
-
-    compile 'com.bigkoo:convenientbanner:2.0.5'     //轮播图
-
-
+    compile 'org.greenrobot:greendao:3.2.0'
+    //greendao依赖
+    debugCompile 'com.amitshekhar.android:debug-db:0.2.0'
+    //Android Debug Database 是一个用于在Android应用中调试数据库和分享参数的强大的库。
+    compile 'com.facebook.stetho:stetho:1.0.1'
+    //无需root即可查看手机data
+    compile 'com.bigkoo:convenientbanner:2.0.5'
+    //轮播图
     /*
-  多渠道打包步骤
-  1. 添加对友盟库的依赖 ；
-  2.在manifest 文件声明appkey, 以及渠道占位符 ；
-  3.在gradle 中动态替换掉占位符value 即可；
-  4.在控制台使用 ./gradlew  assembleRelease  自动打出所有渠道的包
- */
-    compile 'com.umeng.analytics:analytics:latest.integration'   //友盟分析
-
-
-    compile 'org.greenrobot:eventbus:3.0.0'    //引入eventBus
-
-
-    compile 'cn.jiguang.sdk:jpush:3.0.0' // 极光推送
+      多渠道打包步骤
+      1. 添加对友盟库的依赖 ；
+      2.在manifest 文件声明appkey, 以及渠道占位符 ；
+      3.在gradle 中动态替换掉占位符value 即可；
+      4.在控制台使用 ./gradlew  assembleRelease  自动打出所有渠道的包
+     */
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    //友盟分析
+    compile 'org.greenrobot:eventbus:3.0.0'
+    //引入eventBus
+    compile 'cn.jiguang.sdk:jpush:3.0.0'
+    // 极光推送
     compile 'cn.jiguang.sdk:jcore:1.0.0'
-
-
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'     //okhttp 3
-
-
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    //okhttp 3
+    //向阿里云写日志 服务
+    compile files('lib/aliyun-android-sdk.0.2.2.jar')
 }

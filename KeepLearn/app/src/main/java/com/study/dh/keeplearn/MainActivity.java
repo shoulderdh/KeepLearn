@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())//添加 RxJava 适配器
                 .build();
         ApiService apiManager = retrofit.create(ApiService.class);
+
         apiManager.getPictureData(page).enqueue(new Callback<PicInformationGson>() {
             @Override
             public void onResponse(Call<PicInformationGson> call, Response<PicInformationGson> response) {
