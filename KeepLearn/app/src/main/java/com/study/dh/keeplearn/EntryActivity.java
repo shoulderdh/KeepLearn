@@ -1,7 +1,11 @@
 package com.study.dh.keeplearn;
 
 import android.Manifest;
+import android.app.ActivityManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,12 +17,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 import com.aliyun.logsdk.LOGClient;
 import com.aliyun.logsdk.LogException;
 import com.aliyun.logsdk.LogGroup;
 import com.study.dh.keeplearn.Activity.HandleDbActivity;
+import com.study.dh.keeplearn.Activity.handlerActivity;
 import com.study.dh.keeplearn.eventBus.MainEvent;
 import com.study.dh.keeplearn.network.UrlManager;
 import com.study.dh.keeplearn.playvideo.PlayVideoActivity;
@@ -30,6 +34,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -47,13 +52,14 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
     Button handleDB_btn;
     @Bind(R.id.zhihuDaily_btn)
     Button zhihuDaily_btn;
-    @Bind(R.id.eventBus_btn)
-    Button eventBus_btn;
     @Bind(R.id.video_btn)
     Button video_btn;
+    @Bind(R.id.eventBus_btn)
+    Button eventBus_btn;
 
-    @Bind(R.id.eventBus_tv)
-    EditText eventBus_tv;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +74,21 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
         handleDB_btn.setOnClickListener(this);
         zhihuDaily_btn.setOnClickListener(this);
         video_btn.setOnClickListener(this);
+        eventBus_btn.setOnClickListener(this);
 
         //     callPhone();
 
 
            //     testOkhttp();
+
+        List<PackageInfo> packages = getPackageManager().getInstalledPackages(0);
+        ActivityManager mActivityManager;
+        mActivityManager = (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);
+        ComponentName topActivity = mActivityManager.getRunningTasks(1).get(0).topActivity;
+        String packageName = topActivity.getPackageName();
+
+        Log.i("packagename",packageName+"");
+
 
     }
     public static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("java/x-markdown; charset=utf-8");
@@ -158,7 +174,7 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
     @Subscribe(threadMode = ThreadMode.MAIN,priority = 100)     //priority越大  优先级越高  越先接收事件
     public  void  onMainEvent(MainEvent event){
          String msg=event.getMessage();
-         eventBus_tv.setText(msg);
+       //  eventBus_tv.setText(msg);
         Log.i("MainEvent",event.getMessage());
     }
 
@@ -215,12 +231,14 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
                   startActivity(new Intent(EntryActivity.this,zhihuDailyActivity.class));
                   break;
               case R.id.eventBus_btn:
-                  startActivity(new Intent(EntryActivity.this,HandleDbActivity.class));
+                 startActivity(new Intent(EntryActivity.this,handlerActivity.class));
+
                   break;
               case R.id.video_btn:
                   startActivity(new Intent(EntryActivity.this,PlayVideoActivity.class));
 
                   break;
+
           }
     }
 

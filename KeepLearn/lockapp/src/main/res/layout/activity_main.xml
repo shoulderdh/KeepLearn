@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/activity_main"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.study.dh.lockapp.MainActivity">
+
+   <EditText
+       android:id="@+id/pwd_et"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content" />
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/startService_btn"
+       android:text="start service"
+       android:textAllCaps="false"
+       />
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/stopService_btn"
+       android:text="stop service"
+       android:textAllCaps="false"
+       />
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/bindService_btn"
+       android:text="bind service"
+       android:textAllCaps="false"
+       />
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/unbindService_btn"
+       android:text="unbind service"
+       android:textAllCaps="false"
+       />
+</LinearLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_handler"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.study.dh.keeplearn.Activity.handlerActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="handler_start"
+        android:textAllCaps="false"
+        android:id="@+id/handler_btn"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="handler_stop"
+        android:textAllCaps="false"
+        android:id="@+id/handlerStop_btn"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="handler_msg_progressBar"
+        android:textAllCaps="false"
+        android:id="@+id/handlerMsg_btn"
+        />
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:id="@+id/handler_Probar"
+        android:progress="6"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventBus_tv"
+        android:text="192.168.99.146:8080/myvoice/香格里拉.mp3"
+        />
+
+</LinearLayout>
