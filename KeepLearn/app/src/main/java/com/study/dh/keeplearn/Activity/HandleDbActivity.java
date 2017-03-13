@@ -1,5 +1,7 @@
 package com.study.dh.keeplearn.Activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -61,6 +63,10 @@ public class HandleDbActivity extends AppCompatActivity  implements View.OnClick
         AsyncEventAnother_btn.setOnClickListener(this);
         PostingEventAnother_btn.setOnClickListener(this);
         BackgroundEventAnother_btn.setOnClickListener(this);
+
+        Intent  intent=new Intent(Intent.;
+        intent.setData(Uri.parse("http://www.baidu.com"));
+        startActivity(intent);
 
     }
 

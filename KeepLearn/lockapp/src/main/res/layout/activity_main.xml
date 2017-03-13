@@ -37,4 +37,10 @@
        android:text="unbind service"
        android:textAllCaps="false"
        />
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/sendMsg_btn"
+       android:text="传值"
+       />
 </LinearLayout>

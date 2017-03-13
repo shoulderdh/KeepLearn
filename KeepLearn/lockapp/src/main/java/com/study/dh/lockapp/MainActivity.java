@@ -1,16 +1,21 @@
 package com.study.dh.lockapp;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.study.dh.lockapp.activity.SecondActivity;
 import com.study.dh.lockapp.service.LockService;
 import com.study.dh.lockapp.tools.LockUtils;
 
@@ -29,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button  bindService_btn;
     @Bind(R.id.unbindService_btn)
     Button  unbindService_btn;
+    @Bind(R.id.sendMsg_btn)
+    Button  sendMsg_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         stopService_btn.setOnClickListener(this);
         bindService_btn.setOnClickListener(this);
         unbindService_btn.setOnClickListener(this);
+        sendMsg_btn.setOnClickListener(this);
+
+
+
 
 
     }
@@ -77,6 +88,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case R.id.unbindService_btn:
                     unbindService(connection);
                     break;
+            case R.id.sendMsg_btn:
+                Intent  intent1=new Intent(MainActivity.this, SecondActivity.class);
+                startActivityForResult(intent1,1);
+
+
+
+                break;
             }
+    }
+
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case 1:
+                if (resultCode==RESULT_OK){
+                    Log.i("buy",data.getStringExtra("data_return"));
+                      Toast.makeText(MainActivity.this, data.getStringExtra("data_return"),Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
     }
 }
