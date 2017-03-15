@@ -3,6 +3,8 @@
     package="com.study.dh.lockapp">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -28,6 +30,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
         <receiver android:name=".broadcast.MyBroadcastReceiver">
             <intent-filter android:priority="100">
                 <action android:name="com.study.dh.lockapp.broadcast.MY_BROADCAST" />
@@ -43,6 +46,11 @@
             </intent-filter>
 
         </activity>
+
+        <service android:name=".service.DownloadService"
+                  android:exported="true"
+                  android:enabled="true"
+            ></service>
     </application>
 
 </manifest>
