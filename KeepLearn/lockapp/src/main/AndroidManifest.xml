@@ -3,8 +3,8 @@
     package="com.study.dh.lockapp">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,9 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label=" / ">
-
-        </activity>
+            android:label=" / "></activity>
 
         <service android:name=".service.LockService" />
 
@@ -30,7 +28,6 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".broadcast.MyBroadcastReceiver">
             <intent-filter android:priority="100">
                 <action android:name="com.study.dh.lockapp.broadcast.MY_BROADCAST" />
@@ -39,18 +36,20 @@
 
         <activity android:name=".activity.ThirdActivity" />
         <activity android:name=".activity.LoginActivity">
+        </activity>
+
+        <service
+            android:name=".service.DownloadService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.NewsContentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-        <service android:name=".service.DownloadService"
-                  android:exported="true"
-                  android:enabled="true"
-            ></service>
     </application>
 
 </manifest>

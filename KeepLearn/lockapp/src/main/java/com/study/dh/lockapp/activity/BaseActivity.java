@@ -22,6 +22,11 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        android.support.v7.app.ActionBar actionBar=getSupportActionBar();
+        if (actionBar!=null){
+            actionBar.hide();
+        }
+
         ActivityCollector.addActivity(this);
 
     }

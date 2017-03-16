@@ -22,4 +22,6 @@
         android:text="发送强制下线再登陆的广播"
         android:textAllCaps="false"
         />
+
+
 </LinearLayout>
