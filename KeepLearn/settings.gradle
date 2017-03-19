@@ -1,1 +1,1 @@
-include ':app', ':lockapp'
+include ':app', ':lockapp', ':theyear'

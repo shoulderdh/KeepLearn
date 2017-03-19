@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/KeepLearn.iml" filepath="$PROJECT_DIR$/KeepLearn.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/lockapp/lockapp.iml" filepath="$PROJECT_DIR$/lockapp/lockapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theyear/theyear.iml" filepath="$PROJECT_DIR$/theyear/theyear.iml" />
     </modules>
   </component>
 </project>
