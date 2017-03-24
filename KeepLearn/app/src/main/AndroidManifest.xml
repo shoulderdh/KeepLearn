@@ -53,7 +53,15 @@
         <activity
             android:name=".playvideo.PlayVideoActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".Activity.handlerActivity"></activity>
+        <activity android:name=".Activity.handlerActivity" />
+        <activity android:name=".socket.SocketActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

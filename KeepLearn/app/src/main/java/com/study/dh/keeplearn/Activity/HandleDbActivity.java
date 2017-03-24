@@ -64,9 +64,9 @@ public class HandleDbActivity extends AppCompatActivity  implements View.OnClick
         PostingEventAnother_btn.setOnClickListener(this);
         BackgroundEventAnother_btn.setOnClickListener(this);
 
-        Intent  intent=new Intent(Intent.;
-        intent.setData(Uri.parse("http://www.baidu.com"));
-        startActivity(intent);
+//        Intent  intent=new Intent(Intent.
+//        intent.setData(Uri.parse("http://www.baidu.com"));
+//        startActivity(intent);
 
     }
 

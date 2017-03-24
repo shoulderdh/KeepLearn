@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+
+        <item
+            android:icon="@mipmap/ic_launcher"
+            android:id="@+id/nav_call"
+            android:title="call"
+            ></item>
+
+        <item
+            android:icon="@mipmap/ic_launcher"
+            android:id="@+id/nav_eat"
+            android:title="call"
+            ></item>
+
+        <item
+            android:icon="@mipmap/ic_launcher"
+            android:id="@+id/nav_bike"
+            android:title="bike"
+            ></item>
+
+    </group>
+
+
+</menu>

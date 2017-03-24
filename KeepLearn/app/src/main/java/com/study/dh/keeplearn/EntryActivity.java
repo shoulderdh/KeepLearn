@@ -80,14 +80,14 @@ public class EntryActivity extends AppCompatActivity implements View.OnClickList
 
 
            //     testOkhttp();
+//
+//        List<PackageInfo> packages = getPackageManager().getInstalledPackages(0);
+//        ActivityManager mActivityManager;
+//        mActivityManager = (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);
+//        ComponentName topActivity = mActivityManager.getRunningTasks(1).get(0).topActivity;
+//        String packageName = topActivity.getPackageName();
 
-        List<PackageInfo> packages = getPackageManager().getInstalledPackages(0);
-        ActivityManager mActivityManager;
-        mActivityManager = (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);
-        ComponentName topActivity = mActivityManager.getRunningTasks(1).get(0).topActivity;
-        String packageName = topActivity.getPackageName();
-
-        Log.i("packagename",packageName+"");
+//        Log.i("packagename",packageName+"");
 
 
     }
