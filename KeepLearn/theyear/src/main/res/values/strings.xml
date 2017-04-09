@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">theyear</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+    <string name="home">第一</string>
+    <string name="second">第二</string>
+    <string name="third">第三</string>
+    <string name="fourth">第四</string>
+    <string name="fifth">第五</string>
+
+
 </resources>

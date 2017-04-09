@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.study.dh.theyear.fragment.HomeFragment">
+
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/slider"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        />
+    <!--<com.daimajia.slider.library.Indicators.PagerIndicator-->
+        <!--android:id="@+id/custom_indicator"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_gravity="right"-->
+        <!--custom:selected_color="#555555"-->
+        <!--custom:unselected_color="#55555555"-->
+        <!--custom:shape="oval"-->
+        <!--custom:selected_padding_left="3dp"-->
+        <!--custom:selected_padding_right="3dp"-->
+        <!--custom:unselected_padding_left="3dp"-->
+        <!--custom:unselected_padding_right="3dp"-->
+        <!--custom:selected_width="8dp"-->
+        <!--custom:selected_height="8dp"-->
+        <!--custom:unselected_width="4dp"-->
+        <!--custom:unselected_height="4dp"-->
+        <!--/>-->
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mygoods_rc"
+        ></android.support.v7.widget.RecyclerView>
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="home fragment"
+    android:layout_gravity="center"
+    android:gravity="center"
+    />
+
+</LinearLayout>

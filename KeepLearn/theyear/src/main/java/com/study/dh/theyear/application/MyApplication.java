@@ -2,12 +2,11 @@ package com.study.dh.theyear.application;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Parcelable;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.txznet.sdk.TXZConfigManager;
-
-import java.io.Serializable;
 
 /**
  * Created by dh on 2017/3/21.
@@ -17,6 +16,7 @@ public class MyApplication extends Application {
 
     private static Context context;
 
+    public  static RequestQueue  queue;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -36,6 +36,12 @@ public class MyApplication extends Application {
                     }
                 }
         );
+
+        queue= Volley.newRequestQueue(getApplicationContext());
+    }
+
+    public static  RequestQueue getVolleyRequestQueue(){
+        return queue;
     }
 
     public static Context getContext() {
